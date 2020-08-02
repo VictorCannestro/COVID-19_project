@@ -1,16 +1,17 @@
 ## Project Description: 
-I think it would be interesting to generate choropleths of the number of COVID-19 cases in the US, similar in spirit to the one from the Wikipedia page titled ["2019–20 coronavirus pandemic"](https://upload.wikimedia.org/wikipedia/commons/8/85/COVID-19_outbreak_USA_per_capita_cases_map_counties.svg). However, I'd like to animate the time series data to visualize how the virus spread according to different metrics such as new cases per day and cumulative number of cases. If possible, I’d also be interested in seeing how the number of cases relates to: 
-- population density
-- proximity to airports 
-- economic disparity/spread or income 
-- overall political orientation 
+The purpose of this project is to generate choropleths at the state and county levels of the number of COVID-19 cases in the US, similar in spirit to those found on the Wikipedia page titled ["2019–20 coronavirus pandemic"](https://upload.wikimedia.org/wikipedia/commons/8/85/COVID-19_outbreak_USA_per_capita_cases_map_counties.svg), along with other visualizations depicting the virus's dynamics in the US as a whole, by regions, and other areas of interest. I would also like to animate the time series data to visualize how the virus spread according to different metrics such as new cases per day and cumulative number of cases. If possible, I am interested in seeing how the number of cases relates to: 
+- population density (i.e. are larger cities affected more severely) 
+- economic disparity 
+- race 
+- political orientation 
 
 etc (at least at a naive level).
 
 ## Results:
-![](Daily_US.png)
-![](Daily_King_County.png)
-![](Cumulative_King_County.png)
+![](figures/Daily_US.png)
+![](figures/Daily_US_Regions.png)
+![](figures/Daily_King_County.png)
+![](figures/Cumulative_King_County.png)
 
 #### Sources of COVID-19 data:
 - **[NY Times](https://github.com/nytimes/covid-19-data)**
