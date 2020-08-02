@@ -7,6 +7,10 @@ I think it would be interesting to generate choropleths of the number of COVID-1
 
 etc (at least at a naive level).
 
+## Results:
+![](Daily_US.png)
+![](Daily_King_County.png)
+![](Cumulative_King_County.png)
 
 #### Sources of COVID-19 data:
 - **[NY Times](https://github.com/nytimes/covid-19-data)**
