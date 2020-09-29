@@ -8,6 +8,8 @@ test_data = pd.DataFrame({v for v in range(1,11)}, index=range(10))
 
 class TestDailyChanges(object):
     '''
+    A test class for use in TravisCI (Continuous Integration)
+    
     Here are several assert methods for reference:
             assertEqual(a, b)           a == b
             assertNotEqual(a, b)        a != b
@@ -23,14 +25,17 @@ class TestDailyChanges(object):
             assertNotIsInstance(a, b)   !isinstance(a, b)
     '''
     def test_shape(self):
-        assert True
+        '''Add a test'''
+        assert False
         
 class TestSmoother(object):
     
     def test_shape(self):
-        assert True
+        '''Add a test'''
+        assert False
         
 class TestSumByDate(object):
     
     def test_shape(self):
-        assert True
+        '''Add a test'''
+        assert False
