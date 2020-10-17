@@ -93,7 +93,7 @@ def smoother(dataframe: pd.DataFrame, cols: List[str], N: int =7) -> pd.DataFram
     calc = dataframe.rolling(N).mean()
     
     # Append the averaged data to the initial N-days
-    average = dataframe[cols].iloc[:N].append(calc.iloc[N:])
+    average = dataframe[cols].iloc[:N-1].append(calc.iloc[N-1:])
     
     # Edit the column name(s) in temp to include 'average'
     average.columns = ['average_' + name for name in cols]
