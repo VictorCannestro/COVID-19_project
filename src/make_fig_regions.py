@@ -115,9 +115,10 @@ fig.suptitle('Daily Reported Cases and Deaths by US Region', fontsize=24)
 
 # Pad the space on the top to allow for an annotation below suptitle
 fig.subplots_adjust(top=0.87)
-plt.annotate('*Percentages approximate: risk of reinfection still unclear', (-220,460), 
-                  fontsize=12, 
-                  xycoords='axes pixels')
+plt.annotate('*Percentages approximate: risk of reinfection still unclear\n' + ' '*12 + 'Updated on ' + date_str, 
+             (-200,450), 
+             fontsize=12, 
+             xycoords='axes pixels')
 
 # Tuples of Cases, deaths, and percentages of population for later annotations
 numbers = [(percentW, int(casesW), int(deathsW)),
@@ -135,45 +136,29 @@ axes = [ax[0,0], ax[0,1], ax[1,1], ax[1,0]]
 
 # Set the cases plot parameters in a relatively efficient manner
 for i, axis in enumerate(axes):
-    # Set titles
     axis.set_title(titles[i], fontsize=18)
-    
-    # Format the dates displayed on the xaxis
     axis.xaxis.set_major_formatter(date_form)
-    
-    # Annotate with the total number of cases and deaths.
     axis.annotate('Percent Infected:  {:.2f}%\nTotal Cases:  {:,}\nTotal Deaths: {:,}'.format(*numbers[i]), 
-                  (10,143), 
-                  fontsize=17, 
+                  (10,143) if axis not in [ax[0,1], ax[1,1]] else (295,143), 
+                  fontsize=14, 
                   xycoords='axes pixels')
-    
-    # Plot cases bar graph
     axis.bar(plot_data[i].index, 
              plot_data[i].new_cases, 
              width=1,
              color='deepskyblue',
              alpha=0.6)
     
-    axis.set_ylim([0,47000])
+    axis.set_ylim([0,125000])
     
     # Make dual axes
     new_axes.append(axis.twinx())
 
 # Set the deaths plot parameters in a relatively efficient manner
 for i, axis in enumerate(new_axes):
-    # Make the tick labels the color of the deaths graphs
     axis.tick_params(axis='y', labelcolor='purple')
-    
-    # Modify the dual axes xlabels
     axis.xaxis.set_major_formatter(date_form)
-    
-    # Manually limit the y axis bounds
     axis.set_ylim([0,2250])
-    
-    # Turn off second grid
-    axis.grid(False)
-    
-    # Plot deaths
+    axis.grid(False)                                 # Turn off second grid
     new_axes[i].step(plot_data[i].index, 
                      plot_data[i].new_deaths,  
                      color='purple',

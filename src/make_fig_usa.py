@@ -67,14 +67,14 @@ ax2.step(usa_daily.index,
 # Pad the space on the top to allow for an annotation below suptitle
 fig.suptitle('Daily Reported Cases and Deaths in the US*', fontsize=22)
 fig.subplots_adjust(top=0.87) 
-plt.annotate('*Percentage approximate: risk of reinfection still unclear', (200,400), 
+plt.annotate('*Percentage approximate: risk of reinfection still unclear\n' + ' '*12 + 'Updated on ' + date_str, (200,390), 
               fontsize=12, 
               xycoords='axes pixels')
 
 # Annotate with the total number of cases and deaths. 
 ax.annotate('Percent Infected:  {:.2f}%\nTotal Cases:  {:,}\nTotal Deaths: {:,}'.format(percent_infected, usa_cases, usa_deaths), 
             (10,260), 
-            fontsize=17, 
+            fontsize=14, 
             xycoords='axes pixels')
 
 # Formate the x-axis dates
@@ -83,7 +83,7 @@ ax.xaxis.set_major_formatter(date_form)
 
 # Make ax2 tick labels the color of the graph
 ax2.tick_params(axis='y', labelcolor='purple')
-ax2.set_ylim([0,3000])
+ax2.set_ylim([0,4000])
 
 # Format the legend and grid
 ax.legend(loc='upper left')
