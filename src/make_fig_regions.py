@@ -1,8 +1,9 @@
 ############################################################################################
-# Imports and gather data
+# Imports 
 ############################################################################################
 import numpy as np
 import pandas as pd
+import time
 
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
@@ -20,6 +21,13 @@ import requests
 from helper_functions import dailyChanges
 from helper_functions import smoother
 from helper_functions import sumByDate
+
+############################################################################################
+# Gather data
+############################################################################################
+
+date = time.localtime()
+date_str = f'{date.tm_year}-{date.tm_mon}-{date.tm_mday} (YYYY-MM-DD)'
 
 # URL to NY Times COVID-19 data
 url = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv"
@@ -146,8 +154,7 @@ for i, axis in enumerate(axes):
              plot_data[i].new_cases, 
              width=1,
              color='deepskyblue',
-             alpha=0.6)
-    
+             alpha=0.6)   
     axis.set_ylim([0,125000])
     
     # Make dual axes

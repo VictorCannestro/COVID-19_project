@@ -36,6 +36,30 @@ etc (at least at a naive level).
 - [The Institute for Health Metrics and Evaluation (IHME)](http://covid19.healthdata.org/united-states-of-america/washington?mkt_tok=eyJpIjoiT0dGbE9UaGhZV0ZsTkRJNSIsInQiOiJpMjBzb2N2WUpYUFM2RWFiQzZ0RGNYNVhMNEQrdytmb2ZVZkNwWSsyUFhiWjR6K1ZCWGtjR3k3c0dBckY0VEJORTVVR3o2cUFGRkJodzdBdW9EOVZZalwvSEhnRGRpTWtGN1hFbUJNSzgzQnVEM01CbEs5SFwvMHZPVjBwUzZuMGZyIn0%3D)
 - [The COVID Tracking Project](https://covidtracking.com/)
 
+
+## Installation and Running the Scripts
+Install requirements in a virtual environment
+
+'''
+python3 --version
+virtualenv env --python=python3
+source env/bin/activate
+pip install -r requirements.txt
+'''
+
+Make sure you have a high enough python version (3.5 or higher). To launch the scripts, run
+
+`source env/bin/activate`
+
+once per terminal. Then, run
+
+```
+cd src
+python3 make_fig_usa.py
+```
+
+for instance to run the script to generate a figure displaying the history of cases and deaths in the US.
+
 ## Results:
 ![](figures/Daily_US.png)
 ![](figures/Daily_US_Regions.png)

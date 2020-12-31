@@ -3,6 +3,7 @@
 ############################################################################################
 import numpy as np
 import pandas as pd
+import time
 
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
@@ -21,6 +22,9 @@ from helper_functions import sumByDate
 ############################################################################################
 # Gather data and relevant stats for use in the figure
 ############################################################################################
+
+date = time.localtime()
+date_str = f'{date.tm_year}-{date.tm_mon}-{date.tm_mday} (YYYY-MM-DD)'
 
 # URL to NY Times COVID-19 data
 url = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv"
