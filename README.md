@@ -40,16 +40,18 @@ etc (at least at a naive level).
 ## Installation and Running the Scripts
 Install requirements in a virtual environment
 
-'''
+```
 python3 --version
 virtualenv env --python=python3
 source env/bin/activate
 pip install -r requirements.txt
-'''
+```
 
 Make sure you have a high enough python version (3.5 or higher). To launch the scripts, run
 
-`source env/bin/activate`
+```
+source env/bin/activate
+```
 
 once per terminal. Then, run
 
