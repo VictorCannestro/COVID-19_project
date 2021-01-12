@@ -1,18 +1,13 @@
-# states that we are building a Python project
 language: python
-# details the Python versions we want to build
 python:
   - 3.6
-# details, in order, the set of pre-install commands we want to run
 before_install:
   - python --version
-  - pip install -U pip # because you always have to work with the most updated pip. Some builds will fail without this
+  - pip install -U pip 
   - pip install -U pytest
   - pip install codecov
-# since commands are run in the repository’s root folder, and we have a pip-installable package, we pip install “this” folder (so . ) with the optional test dependencies.
 install:
-  - pip install ".[test]" . # install package + test dependencies
-script: pytest # run tests
-# details commands to run after the test script finishes successfully. In our case, we just want to report test coverage results to codecov.io
+  - pip install ".[test]" . 
+script: pytest 
 after_success:
-  - codecov # submit coverage
+  - codecov 
