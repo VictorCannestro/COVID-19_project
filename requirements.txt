@@ -1,0 +1,15 @@
+pandas
+numpy
+scipy
+rtree
+gdal
+fiona
+shapely
+geopandas
+pysal
+matplotlib
+missingno
+time
+seaborn
+requests
+bs4
