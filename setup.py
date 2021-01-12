@@ -19,9 +19,7 @@ INSTALL_REQUIRES = [
 ]
 TEST_REQUIRES = [
     # testing and coverage
-    'pytest', 'coverage', 'pytest-cov',
-    # unmandatory dependencies of the package itself
-    'pandas', 'lime',
+    'pytest', 'coverage', 'pytest-cov'
     # to be able to run `python setup.py checkdocs`
     'collective.checkdocs', 'pygments',
 ]
