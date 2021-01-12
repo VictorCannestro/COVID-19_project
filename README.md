@@ -10,6 +10,7 @@ What types of modeling you did
 What you learned
 Put a link to GitHub and/or a blog write up
 -->
+![](https://travis-ci.com/VictorCannestro/COVID-19_project.svg?branch=master)
 
 ## Project Description: 
 The purpose of this project is to generate choropleths at the state and county levels of the number of COVID-19 cases in the US, similar in spirit to those found on the Wikipedia page titled ["2019–20 coronavirus pandemic"](https://upload.wikimedia.org/wikipedia/commons/8/85/COVID-19_outbreak_USA_per_capita_cases_map_counties.svg), along with other visualizations depicting the virus's dynamics in the US as a whole, by regions, and other areas of interest. I would also like to animate the time series data to visualize how the virus spread according to different metrics such as new cases per day and cumulative number of cases.
@@ -70,18 +71,13 @@ before_install:
   - python --version
   - pip install -U pip
   - pip install -U pytest
+  - pip install pandas
   - pip install codecov
-```
-Since commands are run in the repository’s root folder, and we have a pip-installable package, we pip install “this” folder (i.e. . ) with the optional test dependencies.
-```
-install:
-  - pip install ".[test]" . 
 ```
 Next, we detail the test scripts we wish to run
 ```
-script: pytest # run tests
+script: pytest tests/*
 ```
-
 Finally, the last line details commands to run after the test script finishes successfully. Here, we report test coverage results to codecov.io
 ```
 after_success:
