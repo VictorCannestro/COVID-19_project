@@ -121,3 +121,5 @@ def sumByDate(dataframe: pd.DataFrame, cols: List[str]) -> pd.DataFrame:
         sumDF.loc[date] = dataframe[cols].loc[date].sum()
     return sumDF
 
+if __name__ == '__main__':
+    pass

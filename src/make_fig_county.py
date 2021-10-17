@@ -1,11 +1,9 @@
 ############################################################################################
 # Imports and gather data
 ############################################################################################
-import numpy as np
 import pandas as pd
 
 import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
 from matplotlib.dates import DateFormatter
 import seaborn as sns
 sns.set(font_scale=1.5) 
@@ -16,7 +14,6 @@ register_matplotlib_converters()
 
 from helper_functions import dailyChanges
 from helper_functions import smoother
-from helper_functions import sumByDate
 
 
 # URL to NY Times COVID-19 data
@@ -37,14 +34,14 @@ fig, ax = plt.subplots(figsize=(13,7))
 
 plt.style.use('ggplot')
 
-ax.bar(king.index,
-       king.cases,
+ax.bar(daily_king.index,
+       daily_king.cases,
        color='thistle',
        label='Cumulative Cases',
        width=1)
 
-ax.bar(king.index,
-       king.deaths,
+ax.bar(daily_king.index,
+       daily_king.deaths,
        color='purple',
        label='Cumulative Deaths',
        width=1,
@@ -53,8 +50,8 @@ ax.bar(king.index,
 ax.set_title('Cumulative Reported Cases and Deaths (King County WA)', fontsize=18)
 
 # Annotate with the total number of cases and deaths.
-ax.annotate('Total Cases:  {:,}'.format(king.cases.values[-1]), (10,302), fontsize=17, xycoords='axes pixels')
-ax.annotate('Total Deaths:      {:,}'.format(king.deaths.values[-1]), (10,282), fontsize=17, xycoords='axes pixels')
+ax.annotate('Total Cases:  {:,}'.format(daily_king.cases.values[-1]), (10,302), fontsize=17, xycoords='axes pixels')
+ax.annotate('Total Deaths:      {:,}'.format(daily_king.deaths.values[-1]), (10,282), fontsize=17, xycoords='axes pixels')
 
 date_form = DateFormatter("%b")
 ax.xaxis.set_major_formatter(date_form)
@@ -114,5 +111,6 @@ ax[1].xaxis.set_major_formatter(date_form)
 ax[0].legend()
 ax[1].legend(loc='upper center')
 
-plt.savefig('../figures/Daily_King_County')
-plt.show()
+if __name__ == '__main__':
+    #plt.savefig('../figures/Daily_King_County')
+    plt.show()

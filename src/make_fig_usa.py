@@ -1,12 +1,10 @@
 ############################################################################################
 # Imports
 ############################################################################################
-import numpy as np
 import pandas as pd
 import time
 
 import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
 from matplotlib.dates import DateFormatter
 import seaborn as sns
 sns.set(font_scale=1.5) 
@@ -16,8 +14,6 @@ from pandas.plotting import register_matplotlib_converters
 register_matplotlib_converters()
 
 from helper_functions import dailyChanges
-from helper_functions import smoother
-from helper_functions import sumByDate
 
 ############################################################################################
 # Gather data and relevant stats for use in the figure
@@ -70,10 +66,11 @@ ax2.step(usa_daily.index,
 
 # Pad the space on the top to allow for an annotation below suptitle
 fig.suptitle('Daily Reported Cases and Deaths in the US*', fontsize=22)
-fig.subplots_adjust(top=0.87) 
-plt.annotate('*Percentage approximate: risk of reinfection still unclear\n' + ' '*12 + 'Updated on ' + date_str, (200,390), 
-              fontsize=12, 
-              xycoords='axes pixels')
+fig.subplots_adjust(top=0.9) 
+plt.annotate(f"*Percentage approximate. Updated on {date_str}",
+             (175,400), 
+             fontsize=12, 
+             xycoords='axes pixels')
 
 # Annotate with the total number of cases and deaths. 
 ax.annotate('Percent Infected:  {:.2f}%\nTotal Cases:  {:,}\nTotal Deaths: {:,}'.format(percent_infected, usa_cases, usa_deaths), 
@@ -85,14 +82,19 @@ ax.annotate('Percent Infected:  {:.2f}%\nTotal Cases:  {:,}\nTotal Deaths: {:,}'
 date_form = DateFormatter("%b")
 ax.xaxis.set_major_formatter(date_form)
 
-# Make ax2 tick labels the color of the graph
+# Make axes tick labels the color of the graph
+highest_cases, highest_deaths = max(usa_daily.new_cases), max(usa_daily.new_deaths)
 ax2.tick_params(axis='y', labelcolor='purple')
-ax2.set_ylim([0,4000])
+ax.set_ylim([0, highest_cases + highest_cases//10])
+ax2.set_ylim([0, highest_deaths + highest_deaths//10])
 
 # Format the legend and grid
 ax.legend(loc='upper left')
 ax2.legend(loc='upper left', bbox_to_anchor=(0, 0.92))
 ax2.grid(False)
 
-# Save the figure
-plt.savefig('../figures/Daily_US')
+
+if __name__ == '__main__':
+    # Save the figure
+    plt.savefig('../figures/Daily_US')
+    plt.show()

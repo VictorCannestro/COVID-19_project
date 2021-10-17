@@ -4,6 +4,5 @@ pandas<=1.0.3
 matplotlib
 seaborn<=0.11.1
 bokeh
-time
 bs4
 requests<=2.25.1

@@ -1,12 +1,10 @@
 ############################################################################################
 # Imports 
 ############################################################################################
-import numpy as np
 import pandas as pd
 import time
 
 import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
 from matplotlib.dates import DateFormatter
 import seaborn as sns
 sns.set(font_scale=1.5) 
@@ -19,7 +17,6 @@ from bs4 import BeautifulSoup
 import requests
 
 from helper_functions import dailyChanges
-from helper_functions import smoother
 from helper_functions import sumByDate
 
 ############################################################################################
@@ -53,7 +50,7 @@ html_content = requests.get(url).text      # Make a GET request to fetch the raw
 soup = BeautifulSoup(html_content, "lxml") # Parse the html content
 
 fips, countyName, stateName = [], [], []
-for tr in soup.find_all('tr')[29:-6]: #Found bounds manually
+for tr in soup.find_all('tr')[29:-6]: #Found bounds manually. Think of a better way
     tds = tr.find_all('td')
     fips.append(tds[0].text.replace('\r\n\t\t\t\t',''))
     countyName.append(tds[1].text.replace('\r\n\t\t\t\t',''))
@@ -123,8 +120,8 @@ fig.suptitle('Daily Reported Cases and Deaths by US Region', fontsize=24)
 
 # Pad the space on the top to allow for an annotation below suptitle
 fig.subplots_adjust(top=0.87)
-plt.annotate('*Percentages approximate: risk of reinfection still unclear\n' + ' '*12 + 'Updated on ' + date_str, 
-             (-200,450), 
+plt.annotate(f"*Percentages approximate. Updated on {date_str}.", 
+             (-250,460), 
              fontsize=12, 
              xycoords='axes pixels')
 
@@ -143,6 +140,9 @@ new_axes = []
 axes = [ax[0,0], ax[0,1], ax[1,1], ax[1,0]]
 
 # Set the cases plot parameters in a relatively efficient manner
+highest_cases = int(max([dailyW.max()[0], dailyMW.max()[0], dailyNE.max()[0], dailyS.max()[0]]))
+highest_deaths = int(max([dailyW.max()[1], dailyMW.max()[1], dailyNE.max()[1], dailyS.max()[1]]))
+
 for i, axis in enumerate(axes):
     axis.set_title(titles[i], fontsize=18)
     axis.xaxis.set_major_formatter(date_form)
@@ -155,7 +155,7 @@ for i, axis in enumerate(axes):
              width=1,
              color='deepskyblue',
              alpha=0.6)   
-    axis.set_ylim([0,125000])
+    axis.set_ylim([0, highest_cases + highest_cases//10])
     
     # Make dual axes
     new_axes.append(axis.twinx())
@@ -164,11 +164,15 @@ for i, axis in enumerate(axes):
 for i, axis in enumerate(new_axes):
     axis.tick_params(axis='y', labelcolor='purple')
     axis.xaxis.set_major_formatter(date_form)
-    axis.set_ylim([0,2250])
+    axis.set_ylim([0, highest_deaths + highest_deaths//10])
     axis.grid(False)                                 # Turn off second grid
     new_axes[i].step(plot_data[i].index, 
                      plot_data[i].new_deaths,  
                      color='purple',
                      alpha=0.6)
     
-plt.savefig('../figures/Daily_US_Regions')
+
+if __name__ == '__main__':
+    # Save the figure
+    plt.savefig('../figures/Daily_US_Regions')
+    plt.show()
