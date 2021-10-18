@@ -25,40 +25,6 @@ df = pd.read_csv(url,
                  index_col=['state','county','date'], 
                  parse_dates=True).sort_index()
 
-############################################################################################
-# Cumulative King County
-############################################################################################
-daily_king = dailyChanges(df.loc[('Washington','King')], ['cases','deaths']).abs()
-
-fig, ax = plt.subplots(figsize=(13,7))
-
-plt.style.use('ggplot')
-
-ax.bar(daily_king.index,
-       daily_king.cases,
-       color='thistle',
-       label='Cumulative Cases',
-       width=1)
-
-ax.bar(daily_king.index,
-       daily_king.deaths,
-       color='purple',
-       label='Cumulative Deaths',
-       width=1,
-       alpha=0.8)
-
-ax.set_title('Cumulative Reported Cases and Deaths (King County WA)', fontsize=18)
-
-# Annotate with the total number of cases and deaths.
-ax.annotate('Total Cases:  {:,}'.format(daily_king.cases.values[-1]), (10,302), fontsize=17, xycoords='axes pixels')
-ax.annotate('Total Deaths:      {:,}'.format(daily_king.deaths.values[-1]), (10,282), fontsize=17, xycoords='axes pixels')
-
-date_form = DateFormatter("%b")
-ax.xaxis.set_major_formatter(date_form)
-
-plt.legend()
-plt.savefig('../figures/Cumulative_King_County')
-plt.show()
 
 ############################################################################################
 # Daily Changes King County
@@ -108,9 +74,9 @@ ax[0].xaxis.set_major_formatter(date_form)
 ax[1].xaxis.set_major_formatter(date_form)
 
 # Show the legend and plots
-ax[0].legend()
-ax[1].legend(loc='upper center')
+ax[0].legend(loc='upper right')
+ax[1].legend(loc='upper right')
 
 if __name__ == '__main__':
-    #plt.savefig('../figures/Daily_King_County')
+    plt.savefig('../figures/Daily_King_County')
     plt.show()
