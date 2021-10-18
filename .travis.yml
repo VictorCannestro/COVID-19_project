@@ -5,13 +5,13 @@ before_install:
   - python --version
   - pip install -U pip 
   - pip install -U pytest
-  - time
-  - numpy<=1.15.4
-  - pandas<=1.0.3
-  - matplotlib
-  - seaborn<=0.11.1
-  - bs4
-  - requests<=2.25.1
+  - pip install time
+  - pip install numpy<=1.15.4
+  - pip install pandas<=1.0.3
+  - pip install matplotlib
+  - pip install seaborn<=0.11.1
+  - pip install bs4
+  - pip install requests<=2.25.1
   - pip install codecov
 script: 
   - pytest tests/*
